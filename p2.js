@@ -1,25 +1,25 @@
 setClickHandler("Spoils" , GoldDivvy);
 
 function GoldDivvy() {
-	var HookFun = getInput("PirateNum") * 3;
-		console.log (HookFun);
-	var GoldLeft = getInput("GoldCoins") - HookFun;
-		console.log(GoldLeft);
-	var CaptainCheat = GoldLeft * .12;
+	var PirateFun = (getInput("PirateNum") - 2) * 3;
+		console.log (PirateFun);
+	var GoldLeft = getInput("GoldCoins") - PirateFun;
+		console.log(GoldLeft + " after PirateFun");
+	var CaptainCheat = Math.floor(GoldLeft * .12);
 		setHTML ("CaptainCut" , "The Captain gets " + CaptainCheat + " gold coins.");
-	var NewGoldLeft = GoldLeft - CaptainCheat;
-		console.log(NewGoldLeft);
-	var MateCheat = NewGoldLeft * .08;
+	    GoldLeft = GoldLeft - CaptainCheat;
+		console.log(GoldLeft + " after CaptainCheat");
+	var MateCheat = Math.floor(GoldLeft * .08);
 		setHTML("MateCut" , "The First Mate gets " + MateCheat + " gold coins.");
-	var LastGoldLeft = NewGoldLeft - MateCheat;
-		console.log(LastGoldLeft); 
-	var GoldSplit = LastGoldLeft / getInput("PirateNum");
-		setHTML ("CrewCut" , "The Crew, including the Captain and First Mate, get " + GoldSplit  +" gold coins.");
+        GoldLeft = GoldLeft - MateCheat;
+		console.log(GoldLeft + " After MateCheat"); 
+	var GoldSplit = Math.floor(GoldLeft / getInput("PirateNum"));
+		setHTML ("CrewCut" , "The Crew, including the Captain and First Mate, get " + GoldSplit  +" gold coins each.");
 	var CaptainSpoils = GoldSplit + CaptainCheat;
-		console.log(CaptainSpoils);
+		console.log(CaptainSpoils + " Total CaptainAmt");
 	var MateSpoils = GoldSplit + MateCheat;
-		console.log(MateSpoils);
-	var PBALeft = (LastGoldLeft + CaptainCheat + MateCheat + HookFun) % getInput("GoldCoins");
+		console.log(MateSpoils + " Total MateAmt");
+	var PBALeft = Math.floor(GoldLeft - (GoldSplit * getInput("PirateNum")));
 		setHTML ("PBA" , "And the PBA, those swarthy swillers, get " + PBALeft + " gold coins."); 
 		
 }
